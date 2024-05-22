@@ -1,0 +1,17 @@
+name: Run Batch Script Workflow
+on: [push]  # Trigger on push events
+
+jobs:
+  run_batch_script_job:  # New job name (descriptive)
+    runs-on: windows-latest  # Specify Windows runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # No change
+
+      - name: Run batch script  # New step name
+        uses: uses: microsoft/run-command@v1 
+        with:  # Define arguments for the action
+          command: |  # Multi-line command using heredoc syntax
+            cd script  # Change directory to script folder (assuming it exists)
+            script.bat  # Run the batch script named script.bat
